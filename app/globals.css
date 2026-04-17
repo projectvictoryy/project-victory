@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Surfaces */
+  --color-background:               #fff8f1;
+  --color-surface:                  #fff8f1;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low:    #f9f3eb;
+  --color-surface-container:        #f4ede5;
+  --color-surface-container-high:   #eee7df;
+  --color-surface-container-highest:#e8e1da;
+  --color-surface-dim:              #dfd9d1;
+  --color-surface-variant:          #e8e1da;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Primary */
+  --color-primary:           #944600;
+  --color-primary-container: #ba5900;
+  --color-primary-fixed:     #ffdbc8;
+  --color-primary-fixed-dim: #ffb68a;
+  --color-inverse-primary:   #ffb68a;
+
+  /* On-colors */
+  --color-on-background:           #1e1b17;
+  --color-on-surface:              #1e1b17;
+  --color-on-surface-variant:      #564337;
+  --color-on-primary:              #ffffff;
+  --color-on-primary-container:    #fffbff;
+
+  /* Secondary */
+  --color-secondary:            #8c4e2d;
+  --color-secondary-container:  #ffae85;
+  --color-secondary-fixed:      #ffdbcb;
+  --color-on-secondary:         #ffffff;
+  --color-on-secondary-container: #793f1f;
+
+  /* Tertiary */
+  --color-tertiary:              #6a5a40;
+  --color-tertiary-fixed:        #f7dfbe;
+  --color-on-tertiary:           #ffffff;
+  --color-on-tertiary-fixed:     #251a05;
+  --color-on-tertiary-fixed-variant: #54442c;
+
+  /* Outlines */
+  --color-outline:         #8a7265;
+  --color-outline-variant: #ddc1b2;
+
+  /* Error */
+  --color-error:          #ba1a1a;
+  --color-error-container:#ffdad6;
+  --color-on-error:       #ffffff;
+
+  /* Inverse */
+  --color-inverse-surface:    #33302b;
+  --color-inverse-on-surface: #f7f0e8;
+
+  /* Fonts */
+  --font-headline: var(--font-newsreader);
+  --font-body:     var(--font-lora);
+
+  /* Radius */
+  --radius-DEFAULT: 1rem;
+  --radius-lg:      2rem;
+  --radius-xl:      3rem;
+  --radius-full:    9999px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff8f1;
+  color: #1e1b17;
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.cta-gradient {
+  background: linear-gradient(135deg, #944600 0%, #ba5900 100%);
 }
