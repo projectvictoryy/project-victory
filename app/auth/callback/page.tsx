@@ -1,59 +1,57 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AuthCallbackPage() {
-  const router = useRouter();
-
   useEffect(() => {
     const supabase = createClient();
 
-    // Listen for auth state — Supabase fires SIGNED_IN automatically
-    // when it detects tokens in the URL hash (implicit flow)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN" && session) {
-        subscription.unsubscribe();
-        router.replace("/dashboard");
-        return;
-      }
-    });
-
-    // Also handle PKCE code flow (code in query param)
-    const handleCode = async () => {
-      const code = new URLSearchParams(window.location.search).get("code");
-      const error = new URLSearchParams(window.location.search).get("error");
+    const handleCallback = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const error = params.get("error");
 
       if (error) {
-        router.replace(`/login?error=${encodeURIComponent(error)}`);
+        window.location.href = `/login?error=${encodeURIComponent(error)}`;
         return;
       }
 
+      // PKCE flow — exchange code for session
       if (code) {
         const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
         if (exchangeError) {
-          router.replace(`/login?error=${encodeURIComponent(exchangeError.message)}`);
+          window.location.href = `/login?error=${encodeURIComponent(exchangeError.message)}`;
+          return;
         }
-        // SIGNED_IN event will fire and redirect to dashboard
+        // Full page reload so server middleware reads fresh cookies
+        window.location.href = "/dashboard";
         return;
       }
 
-      // No code and no hash — give it 3 seconds for implicit flow to settle
-      // then redirect to login if still no session
-      setTimeout(async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
+      // Implicit flow — Supabase auto-detects hash tokens
+      // Listen for SIGNED_IN then do a full reload
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === "SIGNED_IN" && session) {
           subscription.unsubscribe();
-          router.replace("/login");
+          window.location.href = "/dashboard";
         }
-      }, 3000);
+      });
+
+      // Fallback — if no event after 4s, give up
+      setTimeout(async () => {
+        subscription.unsubscribe();
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          window.location.href = "/dashboard";
+        } else {
+          window.location.href = "/login";
+        }
+      }, 4000);
     };
 
-    handleCode();
-
-    return () => subscription.unsubscribe();
-  }, [router]);
+    handleCallback();
+  }, []);
 
   return (
     <main className="min-h-screen bg-background flex items-center justify-center">
