@@ -10,44 +10,49 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     const supabase = createClient();
 
-    const handleCallback = async () => {
-      const hash = window.location.hash;
-      const params = new URLSearchParams(window.location.search);
-      const code = params.get("code");
-      const error = params.get("error");
+    // Listen for auth state — Supabase fires SIGNED_IN automatically
+    // when it detects tokens in the URL hash (implicit flow)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session) {
+        subscription.unsubscribe();
+        router.replace("/dashboard");
+        return;
+      }
+    });
+
+    // Also handle PKCE code flow (code in query param)
+    const handleCode = async () => {
+      const code = new URLSearchParams(window.location.search).get("code");
+      const error = new URLSearchParams(window.location.search).get("error");
 
       if (error) {
         router.replace(`/login?error=${encodeURIComponent(error)}`);
         return;
       }
 
-      // PKCE flow — code in query param
       if (code) {
         const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
         if (exchangeError) {
           router.replace(`/login?error=${encodeURIComponent(exchangeError.message)}`);
-          return;
         }
-        router.replace("/dashboard");
+        // SIGNED_IN event will fire and redirect to dashboard
         return;
       }
 
-      // Implicit flow — tokens in URL hash
-      if (hash && hash.includes("access_token")) {
-        const { error: sessionError } = await supabase.auth.getSession();
-        if (sessionError) {
-          router.replace(`/login?error=${encodeURIComponent(sessionError.message)}`);
-          return;
+      // No code and no hash — give it 3 seconds for implicit flow to settle
+      // then redirect to login if still no session
+      setTimeout(async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          subscription.unsubscribe();
+          router.replace("/login");
         }
-        router.replace("/dashboard");
-        return;
-      }
-
-      // Nothing found — back to login
-      router.replace("/login");
+      }, 3000);
     };
 
-    handleCallback();
+    handleCode();
+
+    return () => subscription.unsubscribe();
   }, [router]);
 
   return (
