@@ -1,0 +1,342 @@
+name,aliases,category,unit_type,diet
+Cumin Seeds,"jeera,zeera,jira,safaid jeera",spice,whole,vegan
+Mustard Seeds,"rai,sarson,kaduku,aavalu",spice,whole,vegan
+Coriander Seeds,"dhania,dhaniya,sabut dhania,malli",spice,whole,vegan
+Turmeric Powder,"haldi,manjal,pasupu,arishina",spice,pinch,vegan
+Red Chilli Powder,"lal mirch,mirchi powder,cayenne,milagai podi",spice,pinch,vegan
+Garam Masala,"garam masala powder,whole spice mix",spice,pinch,vegan
+Cumin Powder,"jeera powder,ground cumin,jira powder",spice,pinch,vegan
+Coriander Powder,"dhania powder,ground coriander,malli podi",spice,pinch,vegan
+Asafoetida,"hing,heeng,perungayam,kayam",spice,pinch,vegan
+Black Pepper,"kali mirch,milagu,menasukalu",spice,whole,vegan
+Black Pepper Powder,"kali mirch powder,ground black pepper",spice,pinch,vegan
+Cardamom,"elaichi,elakkai,green cardamom,yelakki",spice,whole,vegan
+Black Cardamom,"badi elaichi,kali elaichi,large cardamom",spice,whole,vegan
+Cloves,"laung,lavang,kirambu,lavangam",spice,whole,vegan
+Cinnamon,"dalchini,pattai,taj",spice,whole,vegan
+Bay Leaves,"tej patta,biryani leaf,tamalpatra",spice,whole,vegan
+Star Anise,"chakra phool,anasphal,biryani flower",spice,whole,vegan
+Fenugreek Seeds,"methi dana,vendayam,menthulu",spice,whole,vegan
+Fennel Seeds,"saunf,sombu,variyali,badi saunf",spice,whole,vegan
+Carom Seeds,"ajwain,omam,vaamu",spice,whole,vegan
+Dry Red Chilli,"sukhi lal mirch,whole red chilli,dried chilli",spice,whole,vegan
+Kashmiri Red Chilli,"kashmiri mirch,kashmiri chilli powder,deghi mirch",spice,pinch,vegan
+Chaat Masala,"chaat masala powder",spice,pinch,vegan
+Amchur Powder,"dry mango powder,amchoor,khatai",spice,pinch,vegan
+Mace,"javitri,japatri",spice,whole,vegan
+Nutmeg,"jaiphal,jathikkai,jajikaya",spice,whole,vegan
+Saffron,"kesar,zafran,kumkuma puvvu",spice,pinch,vegan
+Dry Ginger Powder,"sonth,saunth,sukku,sunthi",spice,pinch,vegan
+Black Salt,"kala namak,sanchal,sulphur salt",spice,pinch,vegan
+Rock Salt,"sendha namak,saindha namak,uppu",spice,pinch,vegan
+Salt,"namak,uppu,uppinakayi",spice,pinch,vegan
+White Pepper,"safed mirch,white pepper powder",spice,pinch,vegan
+Nigella Seeds,"kalonji,kala jeera,onion seeds,mangrel",spice,whole,vegan
+Celery Seeds,"ajmoda,randhuni",spice,whole,vegan
+Pomegranate Powder,"anardana,dried pomegranate seeds",spice,pinch,vegan
+Kokum,"kokam,gamboge,kudampuli",spice,whole,vegan
+Dried Rose Petals,"gulab patti,rose petals",spice,whole,vegan
+Long Pepper,"pippali,pippal,thippali",spice,whole,vegan
+Turmeric Root,"kacchi haldi,raw turmeric,pacha manjal",spice,whole,vegan
+Cinnamon Powder,"dalchini powder,ground cinnamon",spice,pinch,vegan
+Cardamom Powder,"elaichi powder,green cardamom powder",spice,pinch,vegan
+Clove Powder,"laung powder,ground cloves",spice,pinch,vegan
+Allspice,"kabab chini,tailed pepper",spice,whole,vegan
+Curry Powder,"curry masala,madras curry powder",spice,pinch,vegan
+Tandoori Masala,"tandoori masala powder",spice,pinch,vegan
+Biryani Masala,"biryani masala powder",spice,pinch,vegan
+Sambar Powder,"sambar masala,sambar podi",spice,pinch,vegan
+Rasam Powder,"rasam podi,saaru pudi",spice,pinch,vegan
+Pav Bhaji Masala,"pav bhaji masala powder",spice,pinch,vegan
+Chole Masala,"chana masala powder,chole masala powder",spice,pinch,vegan
+Kasuri Methi,"dried fenugreek leaves,kasoori methi",herb,pinch,vegan
+Fresh Coriander,"dhania patta,cilantro,kothmir,kothamalli,hara dhania",herb,whole,vegan
+Fresh Mint,"pudina,pudhina,puthina",herb,whole,vegan
+Curry Leaves,"kadi patta,kadipatta,karivepilai,karibevu",herb,whole,vegan
+Ginger,"adrak,inji,allam,shunti",herb,weight,vegan
+Garlic,"lahsun,poondu,vellulli,bellulli",herb,whole,vegan
+Green Chilli,"hari mirch,pachha milagai,pacha molaga",herb,whole,vegan
+Lemongrass,"hari chai,lemon grass",herb,whole,vegan
+Basil,"tulsi,sabja,sweet basil",herb,whole,vegan
+Dill Leaves,"suva,shepu,soa,soya bhaji",herb,whole,vegan
+Fresh Fenugreek Leaves,"hari methi,methi bhaji,vendhaya keerai",herb,whole,vegan
+Spring Onion,"hara pyaz,green onion,scallion,hari pyaaz",herb,whole,vegan
+Pandan Leaves,"kewra,rampe",herb,whole,vegan
+Drumstick Leaves,"moringa leaves,sahjan ke patte,murungai keerai",herb,whole,vegan
+Lemon Zest,"nimbu ka chilka,lemon peel",herb,whole,vegan
+Orange Zest,"santre ka chilka,orange peel",herb,whole,vegan
+Onion,"pyaz,pyaaj,vengayam,ulli,eerulli",vegetable,whole,veg
+Tomato,"tamatar,thakkali,tomato",vegetable,whole,vegan
+Potato,"aloo,alu,urulaikizhangu,batata",vegetable,weight,vegan
+Cauliflower,"gobi,phool gobi,cauliflower,phukobi",vegetable,weight,vegan
+Spinach,"palak,keerai,palakura",vegetable,weight,vegan
+Peas,"matar,vatana,pachai pattani,batani",vegetable,weight,vegan
+Carrot,"gajar,carrot,gajjara",vegetable,weight,vegan
+Capsicum,"shimla mirch,bell pepper,kodamilagai,donne mirchi",vegetable,whole,vegan
+Red Capsicum,"lal shimla mirch,red bell pepper",vegetable,whole,vegan
+Yellow Capsicum,"peeli shimla mirch,yellow bell pepper",vegetable,whole,vegan
+Brinjal,"baingan,eggplant,aubergine,kathrikkai,vankaya",vegetable,whole,vegan
+Okra,"bhindi,ladyfinger,vendakkai,bendakaya",vegetable,weight,vegan
+Bottle Gourd,"lauki,ghiya,dudhi,sorakkai,sorekai",vegetable,weight,vegan
+Bitter Gourd,"karela,pavakkai,kakarakaya",vegetable,whole,vegan
+Drumstick,"sahjan,murungakkai,munagakaya",vegetable,whole,vegan
+Cabbage,"patta gobi,muttaikose,kosu",vegetable,weight,vegan
+Corn,"makka,bhutta,makai,sweet corn,cholam",vegetable,whole,vegan
+Mushroom,"khumb,khumbi,kukku",vegetable,weight,vegan
+Pumpkin,"kaddu,sitaphal,poosanikai,gummadikaya",vegetable,weight,vegan
+Ash Gourd,"petha,white pumpkin,boodida gummadi,neer poosanikai",vegetable,weight,vegan
+Sweet Potato,"shakarkandi,sakaravalli,genasina",vegetable,weight,vegan
+Yam,"suran,jimikand,karunai kizhangu",vegetable,weight,vegan
+Taro Root,"arbi,colocasia,seppankizhangu,chamadumpa",vegetable,whole,vegan
+Raw Banana,"kaccha kela,plantain,vazhaikkai",vegetable,whole,vegan
+Beetroot,"chukandar,beetroot,remula",vegetable,weight,vegan
+Radish,"mooli,mullangi,moolangi",vegetable,whole,vegan
+Turnip,"shalgam,turnip",vegetable,whole,vegan
+Lotus Root,"kamal kakdi,lotus stem,kamal gatta",vegetable,weight,vegan
+Water Chestnut,"singhara,water caltrops",vegetable,whole,vegan
+Bamboo Shoots,"bans ke kopal,bamboo shoot",vegetable,weight,vegan
+Baby Corn,"baby makka,baby corn",vegetable,whole,vegan
+Broccoli,"broccoli,hari gobi",vegetable,weight,vegan
+Celery,"ajmoda,celery stalk",vegetable,whole,vegan
+Cucumber,"kheera,kakdi,vellarikai,dosakaya",vegetable,whole,vegan
+Ridge Gourd,"turai,tori,peerkangai,beerakaya",vegetable,whole,vegan
+Snake Gourd,"chichinda,padwal,pudalangai",vegetable,whole,vegan
+Pointed Gourd,"parwal,potol,kovakkai",vegetable,whole,vegan
+Ivy Gourd,"tindora,kundru,kovakkai,dondakaya",vegetable,whole,vegan
+Cluster Beans,"guar,gavarphali,kothavarangai",vegetable,weight,vegan
+Broad Beans,"sem,papdi,avarakkai",vegetable,weight,vegan
+French Beans,"green beans,fansi,beans",vegetable,weight,vegan
+Raw Jackfruit,"kathal,kaccha kathal,pala",vegetable,weight,vegan
+Raw Papaya,"kaccha papita,green papaya,pacha papali",vegetable,weight,vegan
+Amaranth Leaves,"chaulai,rajgira bhaji,thandukeerai",vegetable,whole,vegan
+Mustard Leaves,"sarson ka saag,sarson bhaji",vegetable,whole,vegan
+Colocasia Leaves,"arbi ke patte,taro leaves,kesuvina ele",vegetable,whole,vegan
+Zucchini,"zucchini,courgette,turai",vegetable,whole,vegan
+Asparagus,"asparagus,shatavari",vegetable,whole,vegan
+Leek,"leek,vilayati pyaz",vegetable,whole,vegan
+Artichoke,"artichoke,hathichak",vegetable,whole,vegan
+Paneer,"cottage cheese,fresh paneer,chenna paneer",dairy,weight,veg
+Milk,"doodh,paal,haalu",dairy,volume,veg
+Cream,"malai,fresh cream,heavy cream",dairy,volume,veg
+Butter,"makhan,vennai,benne",dairy,weight,veg
+Ghee,"clarified butter,desi ghee,nei",dairy,volume,veg
+Curd,"dahi,yogurt,thayir,mosaru",dairy,volume,veg
+Cheese,"cheese slices,processed cheese,cheddar",dairy,weight,veg
+Condensed Milk,"milkmaid,sweetened condensed milk",dairy,volume,veg
+Khoya,"mawa,khoa,evaporated milk solids",dairy,weight,veg
+Chenna,"fresh chenna,crumbled cottage cheese",dairy,weight,veg
+Buttermilk,"chaas,mor,majjige,taak",dairy,volume,veg
+Cream Cheese,"cream cheese spread",dairy,weight,veg
+Whipping Cream,"heavy whipping cream,double cream",dairy,volume,veg
+Evaporated Milk,"unsweetened condensed milk",dairy,volume,veg
+Toor Dal,"arhar dal,pigeon pea,thuvaram paruppu,togari bele",dal,weight,vegan
+Chana Dal,"bengal gram dal,kadalai paruppu,kadle bele",dal,weight,vegan
+Moong Dal,"green gram dal,pasi paruppu,hesaru bele",dal,weight,vegan
+Urad Dal,"black gram dal,ulundu,uddina bele",dal,weight,vegan
+Masoor Dal,"red lentil,mysore dal,kempu masur",dal,weight,vegan
+Rajma,"kidney beans,red kidney beans,rajmah",dal,weight,vegan
+Chole,"chickpeas,kabuli chana,kondakadalai,kadale",dal,weight,vegan
+Black Eyed Peas,"lobia,chawli,karamani,alasande",dal,weight,vegan
+Whole Moong,"sabut moong,green moong,hesaru kaalu",dal,weight,vegan
+Kala Chana,"black chickpeas,desi chana,kadale kaalu",dal,weight,vegan
+Moth Beans,"matki,moth,moth dal",dal,weight,vegan
+Horse Gram,"kulthi,kollu,hurali kaalu",dal,weight,vegan
+Whole Urad,"sabut urad,black gram whole,uddina kaalu",dal,weight,vegan
+Soybean,"soya bean,soy",dal,weight,vegan
+Dried Green Peas,"vatana,sukhe matar",dal,weight,vegan
+Chana Dal Roasted,"bhuna chana,dalia,puttu kadalai",dal,weight,vegan
+Basmati Rice,"basmati,long grain rice,sugandhit chawal",grain,weight,vegan
+Rice,"chawal,arisi,white rice,biyyam",grain,weight,vegan
+Brown Rice,"brown rice,unpolished rice",grain,weight,vegan
+Poha,"flattened rice,beaten rice,aval,atukulu",grain,weight,vegan
+Puffed Rice,"murmura,kurmura,pori,mandakki",grain,weight,vegan
+Sabudana,"sago,tapioca pearls,javvarisi",grain,weight,vegan
+Oats,"rolled oats,quick oats,oatmeal",grain,weight,vegan
+Quinoa,"quinoa seeds",grain,weight,vegan
+Barley,"jau,yava,jave",grain,weight,vegan
+Broken Wheat,"dalia,cracked wheat,lapsi",grain,weight,vegan
+Vermicelli,"seviyan,sevai,shevaya",grain,weight,vegan
+Rice Vermicelli,"rice noodles,rice sevai",grain,weight,vegan
+Semolina,"sooji,rava,suji,ravva",flour,weight,vegan
+Wheat Flour,"atta,gehun ka atta,godi hittu",flour,weight,vegan
+All Purpose Flour,"maida,refined flour,plain flour",flour,weight,vegan
+Besan,"gram flour,chickpea flour,kadalai maavu,kadle hittu",flour,weight,vegan
+Rice Flour,"chawal ka atta,arisi maavu,akki hittu",flour,weight,vegan
+Corn Flour,"makki atta,cornstarch,bhutta atta",flour,weight,vegan
+Jowar Flour,"sorghum flour,jowar atta,jola hittu",flour,weight,vegan
+Bajra Flour,"pearl millet flour,bajra atta,sajje hittu",flour,weight,vegan
+Ragi Flour,"finger millet flour,nachni atta,ragi hittu",flour,weight,vegan
+Buckwheat Flour,"kuttu atta,kuttu ka atta",flour,weight,vegan
+Amaranth Flour,"rajgira atta,ramdana atta",flour,weight,vegan
+Almond Flour,"badam atta,almond meal",flour,weight,vegan
+Coconut Flour,"nariyal atta",flour,weight,vegan
+Bajra,"pearl millet,bajra grain,sajje",grain,weight,vegan
+Jowar,"sorghum,jowar grain,jola",grain,weight,vegan
+Ragi,"finger millet,nachni,kezhvaragu",grain,weight,vegan
+Bread,"bread slices,white bread,sandwich bread",grain,whole,veg
+Brown Bread,"whole wheat bread,multigrain bread",grain,whole,veg
+Sugar,"cheeni,shakkar,white sugar,chini",sweetener,weight,vegan
+Jaggery,"gur,gud,vellam,bella,bellam",sweetener,weight,vegan
+Honey,"shahad,then,thene",sweetener,volume,veg
+Brown Sugar,"brown sugar,demerara sugar",sweetener,weight,vegan
+Powdered Sugar,"icing sugar,confectioners sugar,bura cheeni",sweetener,weight,vegan
+Palm Sugar,"tal mishri,palm jaggery,karuppati",sweetener,weight,vegan
+Rock Sugar,"mishri,kalkand,crystal sugar",sweetener,whole,vegan
+Date Syrup,"khajoor syrup,date molasses",sweetener,volume,vegan
+Maple Syrup,"maple syrup",sweetener,volume,vegan
+Stevia,"stevia powder,natural sweetener",sweetener,pinch,vegan
+Oil,"cooking oil,refined oil,tel,enne",oil,volume,vegan
+Mustard Oil,"sarson ka tel,rai ka tel",oil,volume,vegan
+Coconut Oil,"nariyal tel,thengai ennai,thengina enne",oil,volume,vegan
+Sesame Oil,"til ka tel,gingelly oil,nallennai,ellu enne",oil,volume,vegan
+Olive Oil,"jaitun ka tel,extra virgin olive oil",oil,volume,vegan
+Sunflower Oil,"surajmukhi tel,sunflower cooking oil",oil,volume,vegan
+Groundnut Oil,"moongphali tel,peanut oil,kadala enne",oil,volume,vegan
+Rice Bran Oil,"rice bran cooking oil",oil,volume,vegan
+Vanaspati,"dalda,vegetable shortening,vanaspati ghee",oil,volume,veg
+Water,"paani,thanni,neeru,jal",liquid,volume,vegan
+Coconut Milk,"nariyal doodh,thengai paal,thengina haalu",liquid,volume,vegan
+Coconut Water,"nariyal pani,thengai thanni,elaneer",liquid,volume,vegan
+Vegetable Stock,"vegetable broth,sabzi ka stock",liquid,volume,vegan
+Chicken Stock,"murgh ka stock,chicken broth",liquid,volume,non_veg
+Lemon Juice,"nimbu ras,elumichai saru,limu juice",liquid,volume,vegan
+Lime Juice,"kagzi nimbu ras",liquid,volume,vegan
+Tamarind Water,"imli ka paani,puli thanni",liquid,volume,vegan
+Rose Water,"gulab jal,rose essence,panneer",liquid,volume,vegan
+Kewra Water,"kewra essence,pandanus water",liquid,volume,vegan
+Orange Juice,"santre ka ras,narangi juice",liquid,volume,vegan
+Pomegranate Juice,"anar ka ras,anaar juice",liquid,volume,vegan
+Mango Juice,"aam ka ras,mango pulp",liquid,volume,vegan
+Pineapple Juice,"ananas ka ras",liquid,volume,vegan
+Apple Juice,"seb ka ras",liquid,volume,vegan
+Vinegar,"sirka,sirca,white vinegar",condiment,volume,vegan
+Apple Cider Vinegar,"seb ka sirka,ACV",condiment,volume,vegan
+Soy Sauce,"soya sauce,soya saas",condiment,volume,vegan
+Fish Sauce,"fish sauce",condiment,volume,non_veg
+Oyster Sauce,"oyster sauce",condiment,volume,non_veg
+Worcestershire Sauce,"worcestershire,HP sauce",condiment,volume,non_veg
+Tomato Ketchup,"tomato sauce,ketchup,tamatar sauce",condiment,volume,vegan
+Green Chutney,"hari chutney,coriander chutney,pudina chutney",condiment,volume,vegan
+Tamarind Paste,"imli paste,puli paste,tamarind concentrate",condiment,volume,vegan
+Tamarind,"imli,puli,chintapandu,hunase",condiment,weight,vegan
+Coconut Chutney,"nariyal chutney,thengai chutney",condiment,volume,vegan
+Peanut Chutney,"moongphali chutney,groundnut chutney",condiment,volume,vegan
+Mango Pickle,"aam ka achar,avakaya,maavadu",condiment,whole,vegan
+Lime Pickle,"nimbu ka achar,elumichai oorugai",condiment,whole,vegan
+Mixed Pickle,"achar,mixed vegetable pickle",condiment,whole,vegan
+Schezwan Sauce,"szechuan sauce,schezwan chutney",condiment,volume,vegan
+Peri Peri Sauce,"piri piri sauce",condiment,volume,vegan
+Mayonnaise,"mayo,eggless mayo",condiment,volume,veg
+Mustard Sauce,"yellow mustard,mustard paste",condiment,volume,vegan
+Hot Sauce,"red hot sauce,tabasco",condiment,volume,vegan
+Lemon,"nimbu,elumichai,limbu",fruit,whole,vegan
+Lime,"kagzi nimbu,green lime",fruit,whole,vegan
+Mango,"aam,manga,mavina hannu,mamidi",fruit,whole,vegan
+Banana,"kela,vazhai pazham,bale hannu",fruit,whole,vegan
+Coconut,"nariyal,thengai,narikela,tenginakaayi",fruit,whole,vegan
+Apple,"seb,sephala,sebu",fruit,whole,vegan
+Guava,"amrood,peru,jaamapandu",fruit,whole,vegan
+Pomegranate,"anar,mathalam pazham,dalimbe",fruit,whole,vegan
+Papaya,"papita,pappali,boppayipandu",fruit,whole,vegan
+Pineapple,"ananas,annasi pazham,ananas",fruit,whole,vegan
+Watermelon,"tarbooz,tarbuj,kallangadi",fruit,whole,vegan
+Grapes,"angoor,drakshi,draksha",fruit,whole,vegan
+Strawberry,"strawberry,jangli strawberry",fruit,whole,vegan
+Orange,"santra,narangi,kamala",fruit,whole,vegan
+Lychee,"litchi,lichi",fruit,whole,vegan
+Dates,"khajoor,kajura,kharjura",fruit,whole,vegan
+Dried Apricot,"khumani,khubani,jardalu",fruit,whole,vegan
+Dried Fig,"anjeer,athi pazham",fruit,whole,vegan
+Amla,"Indian gooseberry,aavla,nellikai",fruit,whole,vegan
+Chikoo,"sapodilla,sapota,seetaphal",fruit,whole,vegan
+Custard Apple,"sitaphal,sharifa,seetha pazham",fruit,whole,vegan
+Jackfruit,"kathal,pala,halasina hannu",fruit,whole,vegan
+Melon,"kharbooza,muskmelon",fruit,whole,vegan
+Plum,"aloo bukhara,plum",fruit,whole,vegan
+Peach,"aadoo,peach",fruit,whole,vegan
+Pear,"nashpati,naspati",fruit,whole,vegan
+Cherry,"cherry,gila",fruit,whole,vegan
+Blueberry,"blueberry,nil berry",fruit,whole,vegan
+Cranberry,"cranberry",fruit,whole,vegan
+Cashews,"kaju,mundiri,godambi",nut,weight,vegan
+Almonds,"badam,vadam,badami",nut,weight,vegan
+Peanuts,"moongphali,groundnut,verkadalai,shengdane",nut,weight,vegan
+Walnuts,"akhrot,akha rota",nut,weight,vegan
+Pistachios,"pista,piste",nut,weight,vegan
+Raisins,"kishmish,kismis,munthiri,drakshi",nut,weight,vegan
+Fox Nuts,"makhana,lotus seeds,phool makhana",nut,weight,vegan
+Dried Coconut,"kopra,coconut copra,sukha nariyal",nut,weight,vegan
+Chironji,"charoli,chara magaz",nut,weight,vegan
+Pine Nuts,"chilgoza,pine seeds",nut,weight,vegan
+Melon Seeds,"magaz,tarbooj ke beej,kharbuja beej",nut,weight,vegan
+Sesame Seeds,"til,ellu,nuvvulu",seed,weight,vegan
+Poppy Seeds,"khus khus,kasa kasa,gasagase",seed,weight,vegan
+Flax Seeds,"alsi,agasi,linseed",seed,weight,vegan
+Sunflower Seeds,"surajmukhi ke beej",seed,weight,vegan
+Pumpkin Seeds,"kaddu ke beej,pepitas",seed,weight,vegan
+Chia Seeds,"chia seeds,sabja beej",seed,weight,vegan
+Watermelon Seeds,"tarbooz ke beej",seed,weight,vegan
+Hemp Seeds,"bhang ke beej",seed,weight,vegan
+Chicken,"murgh,kozhi,kodi,kukkuta",meat,weight,non_veg
+Boneless Chicken,"chicken boneless,murgh boneless",meat,weight,non_veg
+Chicken Breast,"chicken breast,murgh ka seena",meat,weight,non_veg
+Chicken Thighs,"chicken thigh,murgh ki raan",meat,weight,non_veg
+Chicken Wings,"chicken wings,murgh ke pankh",meat,weight,non_veg
+Chicken Mince,"keema,chicken mince,murgh ka keema",meat,weight,non_veg
+Mutton,"gosht,lamb,aadu kari,yeli",meat,weight,non_veg
+Mutton Mince,"mutton keema,gosht keema",meat,weight,non_veg
+Pork,"suar ka gosht,pork meat",meat,weight,non_veg
+Bacon,"bacon strips",meat,weight,non_veg
+Beef,"gaay ka gosht,beef meat",meat,weight,non_veg
+Lamb Chops,"lamb chop,mutton chops",meat,weight,non_veg
+Fish,"machli,meen,meenu",seafood,weight,non_veg
+Pomfret,"paplet,pamflet,avoli",seafood,weight,non_veg
+Rohu,"rohu fish,rui machli",seafood,weight,non_veg
+Hilsa,"ilish,hilsa fish,pulasa",seafood,weight,non_veg
+Mackerel,"bangda,ayala,bangude",seafood,weight,non_veg
+Surmai,"king fish,seer fish,vanjaram",seafood,weight,non_veg
+Bombay Duck,"bombil,bummalo",seafood,weight,non_veg
+Salmon,"salmon fish",seafood,weight,non_veg
+Tuna,"tuna fish,choora",seafood,weight,non_veg
+Prawns,"jhinga,eral,shrimp,royyalu",seafood,weight,non_veg
+Crab,"kekda,nandu,khekda",seafood,whole,non_veg
+Lobster,"lobster,jhinga raja",seafood,whole,non_veg
+Squid,"calamari,squid,kanava",seafood,weight,non_veg
+Clams,"tisrya,clams,kube",seafood,whole,non_veg
+Mussels,"mussels,kalwa,kadukka",seafood,whole,non_veg
+Egg,"anda,muttai,motte",egg,whole,eggetarian
+Egg White,"ande ka safed hissa,egg white",egg,whole,eggetarian
+Egg Yolk,"ande ki zardi,egg yolk",egg,whole,eggetarian
+Soda Water,"club soda,sparkling water,soda",mixer,volume,vegan
+Tonic Water,"tonic,gin tonic water",mixer,volume,vegan
+Ginger Ale,"ginger ale,adrak soda",mixer,volume,vegan
+Cola,"cola,cold drink,pepsi,coke",mixer,volume,vegan
+Ginger Beer,"ginger beer",mixer,volume,vegan
+Simple Syrup,"sugar syrup,chashni,sheera",mixer,volume,vegan
+Grenadine,"grenadine syrup,pomegranate syrup",mixer,volume,vegan
+Lime Cordial,"lime syrup,rose lime",mixer,volume,vegan
+Mint Syrup,"pudina syrup,mint cordial",mixer,volume,vegan
+Beer,"beer,lager,ale",spirit,volume,eggetarian
+Wine,"red wine,white wine,sharab",spirit,volume,vegan
+Rum,"rum,white rum,dark rum",spirit,volume,vegan
+Whiskey,"whisky,scotch,bourbon",spirit,volume,vegan
+Vodka,"vodka",spirit,volume,vegan
+Gin,"gin",spirit,volume,vegan
+Tequila,"tequila",spirit,volume,vegan
+Arrack,"arak,desi daru",spirit,volume,vegan
+Feni,"fenny,cashew feni,coconut feni",spirit,volume,vegan
+Toddy,"tadi,palm wine,neera",spirit,volume,vegan
+Baking Soda,"meetha soda,sodium bicarbonate,cooking soda",condiment,pinch,vegan
+Baking Powder,"baking powder",condiment,pinch,vegan
+Yeast,"dry yeast,instant yeast,khhameer",condiment,pinch,vegan
+Cornstarch,"corn flour,arrowroot,maize starch",flour,weight,vegan
+Gelatin,"gelatin sheets,gelatin powder",condiment,weight,non_veg
+Agar Agar,"china grass,agar,kadal paasi",condiment,weight,vegan
+Vanilla Extract,"vanilla essence,vanila",condiment,volume,vegan
+Cocoa Powder,"cacao powder,chocolate powder",condiment,weight,vegan
+Dark Chocolate,"dark chocolate bar,bitter chocolate",condiment,weight,vegan
+Milk Chocolate,"milk chocolate bar",condiment,weight,veg
+White Chocolate,"white chocolate",condiment,weight,veg
+Food Colour,"edible colour,food dye",condiment,pinch,vegan
+Edible Silver Leaf,"chandi ka vark,silver varq",condiment,whole,vegan
+Edible Gold Leaf,"sona ka vark,gold varq",condiment,whole,vegan
