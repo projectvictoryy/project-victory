@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const [displayName, setDisplayName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
@@ -28,7 +28,7 @@ export default function OnboardingPage() {
         .select("onboarding_completed")
         .eq("id", user.id)
         .maybeSingle()
-        .then(({ data }) => {
+        .then(({ data }: { data: { onboarding_completed: boolean } | null }) => {
           if (data?.onboarding_completed) router.replace("/dashboard");
         });
     });
@@ -100,7 +100,7 @@ export default function OnboardingPage() {
 
     const { error: profileError } = await supabase.from("profiles").upsert({
       id: user.id,
-      display_name: displayName.trim(),
+      full_name: fullName.trim(),
       username,
       avatar_url,
       onboarding_completed: true,
@@ -117,7 +117,7 @@ export default function OnboardingPage() {
   }
 
   const canSubmit =
-    displayName.trim().length > 0 &&
+    fullName.trim().length > 0 &&
     usernameStatus === "available" &&
     !loading;
 
@@ -181,8 +181,8 @@ export default function OnboardingPage() {
             <input
               type="text"
               required
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               placeholder="e.g. Priya Kapoor"
               maxLength={50}
               className="bg-surface-container-low border-none rounded-[10px] px-4 py-3 font-body text-sm text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all outline-none"
