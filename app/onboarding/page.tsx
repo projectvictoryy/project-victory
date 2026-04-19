@@ -25,11 +25,11 @@ export default function OnboardingPage() {
       if (!user) { router.replace("/login"); return; }
       supabase
         .from("profiles")
-        .select("onboarding_completed")
+        .select("username, onboarding_completed")
         .eq("id", user.id)
         .maybeSingle()
-        .then(({ data }: { data: { onboarding_completed: boolean } | null }) => {
-          if (data?.onboarding_completed) router.replace("/dashboard");
+        .then(({ data }: { data: { username: string; onboarding_completed: boolean } | null }) => {
+          if (data?.onboarding_completed && data.username) router.replace(`/${data.username}`);
         });
     });
   }, [router]);
@@ -113,7 +113,7 @@ export default function OnboardingPage() {
       return;
     }
 
-    router.replace("/dashboard");
+    router.replace(`/${username}`);
   }
 
   const canSubmit =

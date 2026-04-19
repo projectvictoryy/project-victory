@@ -49,10 +49,12 @@ export async function GET(request: NextRequest) {
     if (user) {
       const { data: profile } = await supabase
         .from("profiles")
-        .select("onboarding_completed")
+        .select("username, onboarding_completed")
         .eq("id", user.id)
         .maybeSingle();
-      if (profile?.onboarding_completed) redirectPath = "/dashboard";
+      if (profile?.onboarding_completed && profile.username) {
+        redirectPath = `/${profile.username}`;
+      }
     }
 
     const redirectResponse = NextResponse.redirect(
