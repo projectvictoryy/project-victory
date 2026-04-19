@@ -68,7 +68,7 @@ export default function OnboardingPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (usernameStatus !== "available" || !displayName.trim()) return;
+    if (usernameStatus !== "available" || !fullName.trim()) return;
 
     setLoading(true);
     setError("");
