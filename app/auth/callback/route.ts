@@ -16,10 +16,8 @@ export async function GET(request: NextRequest) {
 
   // PKCE flow — exchange code for session
   if (code) {
-    // Create the redirect response FIRST so we can attach cookies to it
-    const redirectResponse = NextResponse.redirect(
-      new URL("/dashboard", request.url)
-    );
+    // Collect cookies during exchange, then apply them to the final redirect response
+    const cookieJar: Array<{ name: string; value: string; options: object }> = [];
 
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -30,10 +28,7 @@ export async function GET(request: NextRequest) {
             return request.cookies.getAll();
           },
           setAll(cookiesToSet) {
-            // Write cookies onto the redirect response — this is what persists the session
-            cookiesToSet.forEach(({ name, value, options }) => {
-              redirectResponse.cookies.set(name, value, options);
-            });
+            cookiesToSet.forEach((c) => cookieJar.push(c));
           },
         },
       }
@@ -48,7 +43,24 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Session cookies are now on redirectResponse — return it
+    // Check if user has completed onboarding — route accordingly
+    let redirectPath = "/onboarding";
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("onboarding_completed")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (profile?.onboarding_completed) redirectPath = "/dashboard";
+    }
+
+    const redirectResponse = NextResponse.redirect(
+      new URL(redirectPath, request.url)
+    );
+    cookieJar.forEach(({ name, value, options }) => {
+      redirectResponse.cookies.set(name, value, options);
+    });
     return redirectResponse;
   }
 

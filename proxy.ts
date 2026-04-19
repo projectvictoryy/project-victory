@@ -26,8 +26,13 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // Just refresh the session — no redirects here
-  await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+  const { pathname } = request.nextUrl;
+
+  // Unauthenticated users cannot access protected routes
+  if (!user && (pathname.startsWith("/onboarding") || pathname.startsWith("/dashboard"))) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 
   return supabaseResponse;
 }
