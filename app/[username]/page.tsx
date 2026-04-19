@@ -36,14 +36,23 @@ export default async function StorefrontPage({ params }: Props) {
   const { username } = await params;
   const supabase = await createClient();
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("id, full_name, username, avatar_url, bio, cuisine_tags")
-    .eq("username", username)
-    .is("deleted_at", null)
-    .maybeSingle();
+  const { data: { user: authUser } } = await supabase.auth.getUser();
+
+  const [{ data: profile }, { data: authProfile }] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("id, full_name, username, avatar_url, bio, cuisine_tags")
+      .eq("username", username)
+      .is("deleted_at", null)
+      .maybeSingle(),
+    authUser
+      ? supabase.from("profiles").select("username").eq("id", authUser.id).maybeSingle()
+      : Promise.resolve({ data: null }),
+  ]);
 
   if (!profile) notFound();
+
+  const isOwner = authUser?.id === profile.id;
 
   // Recipes fetched here once recipes table is built
   const recipes: Recipe[] = [];
@@ -60,18 +69,39 @@ export default async function StorefrontPage({ params }: Props) {
             {APP_CONFIG.name}
           </Link>
           <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
-            >
-              Log in
-            </Link>
-            <Link
-              href="/signup"
-              className="cta-gradient text-on-primary px-5 py-2.5 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 transition-all"
-            >
-              Sign up
-            </Link>
+            {isOwner ? (
+              <>
+                <Link
+                  href="/settings"
+                  className="flex items-center gap-1.5 font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                >
+                  <span className="material-symbols-outlined text-base leading-none">settings</span>
+                  Settings
+                </Link>
+              </>
+            ) : authUser && authProfile?.username ? (
+              <Link
+                href={`/${authProfile.username}`}
+                className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
+              >
+                My profile
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="cta-gradient text-on-primary px-5 py-2.5 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 transition-all"
+                >
+                  Sign up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
