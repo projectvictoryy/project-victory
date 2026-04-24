@@ -229,7 +229,7 @@ export default async function RecipePage({ params }: Props) {
                       </span>
                     )}
                   </div>
-                  <StepTimers steps={steps!} freeCount={freeStepsCount} editorial />
+                  <StepTimers steps={steps!} freeCount={freeStepsCount} />
                 </div>
               </div>
             )}
