@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ShareButton from "@/components/storefront/ShareButton";
 import RecipeFilters from "@/components/storefront/RecipeFilters";
+import NavUserMenu from "@/components/storefront/NavUserMenu";
 import { Suspense } from "react";
 
 interface Props {
@@ -50,7 +51,7 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
       .is("deleted_at", null)
       .maybeSingle(),
     authUser
-      ? supabase.from("profiles").select("username").eq("id", authUser.id).maybeSingle()
+      ? supabase.from("profiles").select("username, full_name, avatar_url").eq("id", authUser.id).maybeSingle()
       : Promise.resolve({ data: null }),
   ]);
 
@@ -85,23 +86,12 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
             {APP_CONFIG.name}
           </Link>
           <div className="flex items-center gap-4">
-            {isOwner ? (
-              <>
-                <Link
-                  href="/settings"
-                  className="flex items-center gap-1.5 font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
-                >
-                  <span className="material-symbols-outlined text-base leading-none">settings</span>
-                  Settings
-                </Link>
-              </>
-            ) : authUser && authProfile?.username ? (
-              <Link
-                href={`/${authProfile.username}`}
-                className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
-              >
-                My profile
-              </Link>
+            {authUser && authProfile?.username ? (
+              <NavUserMenu
+                avatarUrl={authProfile.avatar_url ?? null}
+                username={authProfile.username}
+                fullName={authProfile.full_name ?? authProfile.username}
+              />
             ) : (
               <>
                 <Link
