@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { APP_CONFIG } from "@/config/app";
 
 type Ingredient = {
   id: string;
@@ -49,7 +50,7 @@ export default function RecipeSidebar({ ingredients, baseServings, recipeSlug, c
 
   const shareUrl = typeof window !== "undefined"
     ? window.location.href
-    : `https://tadka.in/${creatorUsername}/${recipeSlug}`;
+    : `https://${APP_CONFIG.domain}/${creatorUsername}/${recipeSlug}`;
 
   const handleShare = () => {
     if (navigator.share) {

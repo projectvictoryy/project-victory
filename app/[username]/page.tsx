@@ -3,6 +3,7 @@ import { APP_CONFIG } from "@/config/app";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteNav from "@/components/ui/SiteNav";
 import ShareButton from "@/components/storefront/ShareButton";
 import FollowButton from "@/components/storefront/FollowButton";
 import RecipeFilters from "@/components/storefront/RecipeFilters";
@@ -72,7 +73,7 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
     (() => {
       let q = supabase
         .from("recipes")
-        .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
+        .select("id, title, slug, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
         .eq("user_id", profile.id)
         .eq("status", "published")
         .is("deleted_at", null)
@@ -89,41 +90,26 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link
-            href="/"
-            className="font-headline text-xl font-bold italic text-primary"
-          >
-            {APP_CONFIG.name}
-          </Link>
-          <div className="flex items-center gap-4">
-            {authUser && authProfile?.username ? (
-              <NavUserMenu
-                avatarUrl={authProfile.avatar_url ?? null}
-                username={authProfile.username}
-                fullName={authProfile.full_name ?? authProfile.username}
-              />
-            ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors"
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="/signup"
-                  className="cta-gradient text-on-primary px-5 py-2.5 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 transition-all"
-                >
-                  Sign up
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      </nav>
+      <SiteNav
+        right={
+          authUser && authProfile?.username ? (
+            <NavUserMenu
+              avatarUrl={authProfile.avatar_url ?? null}
+              username={authProfile.username}
+              fullName={authProfile.full_name ?? authProfile.username}
+            />
+          ) : (
+            <>
+              <Link href="/login" className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors">
+                Log in
+              </Link>
+              <Link href="/signup" className="cta-gradient text-on-primary px-5 py-2.5 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 transition-all">
+                Sign up
+              </Link>
+            </>
+          )
+        }
+      />
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
 

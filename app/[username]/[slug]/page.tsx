@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { APP_CONFIG } from "@/config/app";
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteNav from "@/components/ui/SiteNav";
 import RecipeSidebar from "@/components/recipe/RecipeSidebar";
 import StepTimers from "@/components/recipe/StepTimers";
 
@@ -71,35 +72,30 @@ export default async function RecipePage({ params }: Props) {
   const baseServings = recipe.servings ?? 4;
   const freeStepsCount = recipe.is_paid && !isOwner ? 2 : undefined;
   const cuisineTags = (recipe.cuisine_type as string[]) ?? [];
+  const lockedSteps = (steps?.length ?? 0) - (freeStepsCount ?? 0);
 
   return (
     <div className="min-h-screen bg-background text-on-background">
-      {/* Nav */}
-      <nav className="bg-background/80 backdrop-blur-[24px] sticky top-0 z-50 flex justify-between items-center w-full px-8 py-4 border-b border-outline-variant/10">
-        <Link href="/" className="text-2xl font-bold text-primary italic font-headline">
-          {APP_CONFIG.name}
-        </Link>
-        <div className="hidden md:flex items-center gap-10">
-          <Link href="/dashboard" className="font-body text-on-surface-variant hover:text-primary transition-colors">Dashboard</Link>
-          <Link href={`/${username}`} className="font-body text-on-surface-variant hover:text-primary transition-colors">{profile.full_name}</Link>
-        </div>
-        <div className="flex items-center gap-3">
-          {isOwner && (
-            <Link
-              href={`/dashboard/recipes/${recipe.id}/edit`}
-              className="font-body text-sm text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full hover:border-primary hover:text-primary transition-all"
-            >
-              Edit recipe
+      <SiteNav
+        center={
+          <>
+            <Link href="/dashboard" className="font-body text-on-surface-variant hover:text-primary transition-colors">Dashboard</Link>
+            <Link href={`/${username}`} className="font-body text-on-surface-variant hover:text-primary transition-colors">{profile.full_name}</Link>
+          </>
+        }
+        right={
+          <>
+            {isOwner && (
+              <Link href={`/dashboard/recipes/${recipe.id}/edit`} className="font-body text-sm text-on-surface-variant border border-outline-variant/30 px-5 py-2 rounded-full hover:border-primary hover:text-primary transition-all">
+                Edit recipe
+              </Link>
+            )}
+            <Link href="/dashboard/recipes/new" className="cta-gradient text-on-primary px-6 py-2 rounded-full font-body font-medium shadow-[0_2px_8px_rgba(196,94,0,0.25)] transition-transform active:scale-95">
+              Create Recipe
             </Link>
-          )}
-          <Link
-            href="/dashboard/recipes/new"
-            className="cta-gradient text-on-primary px-6 py-2 rounded-full font-body font-medium shadow-[0_2px_8px_rgba(196,94,0,0.25)] transition-transform active:scale-95"
-          >
-            Create Recipe
-          </Link>
-        </div>
-      </nav>
+          </>
+        }
+      />
 
       <main className="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
 
@@ -199,7 +195,7 @@ export default async function RecipePage({ params }: Props) {
         </section>
 
         {/* ── MAIN CONTENT ──────────────────────────────────────── */}
-        <section className={`mt-24 grid grid-cols-1 lg:grid-cols-12 gap-16 ${recipe.cover_image_url ? "lg:mt-32" : "mt-16"}`}>
+        <section className={`grid grid-cols-1 lg:grid-cols-12 gap-16 ${recipe.cover_image_url ? "mt-24 lg:mt-32" : "mt-16"}`}>
 
           {/* Left — sticky ingredients sidebar */}
           {(ingredients?.length ?? 0) > 0 && (
@@ -239,7 +235,7 @@ export default async function RecipePage({ params }: Props) {
               <div className="mt-12 bg-surface-container-low rounded-[1rem] p-10 text-center">
                 <span className="material-symbols-outlined text-primary mb-4 block" style={{ fontSize: "44px", fontVariationSettings: "'FILL' 1" }}>lock</span>
                 <h3 className="font-headline text-3xl font-bold italic text-on-surface mb-3">
-                  {(steps?.length ?? 0) - 2} more step{(steps?.length ?? 0) - 2 !== 1 ? "s" : ""} inside
+                  {lockedSteps} more step{lockedSteps !== 1 ? "s" : ""} inside
                 </h3>
                 <p className="font-body text-on-surface-variant mb-8 text-lg max-w-md mx-auto leading-relaxed">
                   Unlock the full recipe once — it&apos;s yours to keep and cook forever.

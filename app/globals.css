@@ -86,3 +86,12 @@ h1, h2, h3, h4, h5, h6 {
 .cta-gradient {
   background: linear-gradient(135deg, #944600 0%, #ba5900 100%);
 }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
