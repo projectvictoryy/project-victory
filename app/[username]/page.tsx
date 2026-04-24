@@ -41,7 +41,7 @@ export default async function StorefrontPage({ params }: Props) {
   const [{ data: profile }, { data: authProfile }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("id, full_name, username, avatar_url, bio, cuisine_tags")
+      .select("id, full_name, username, avatar_url, bio, cuisine_tags, followers_count, likes_count")
       .eq("username", username)
       .is("deleted_at", null)
       .maybeSingle(),
@@ -54,8 +54,15 @@ export default async function StorefrontPage({ params }: Props) {
 
   const isOwner = authUser?.id === profile.id;
 
-  // Recipes fetched here once recipes table is built
-  const recipes: Recipe[] = [];
+  const { data: recipes } = await supabase
+    .from("recipes")
+    .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type")
+    .eq("user_id", profile.id)
+    .eq("status", "published")
+    .is("deleted_at", null)
+    .order("published_at", { ascending: false });
+
+  const recipeList: Recipe[] = recipes ?? [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -156,10 +163,26 @@ export default async function StorefrontPage({ params }: Props) {
             <div className="flex flex-wrap gap-12 py-4">
               <div>
                 <span className="block font-headline text-3xl font-bold text-primary">
-                  {recipes.length}
+                  {formatCount(profile.followers_count ?? 0)}
+                </span>
+                <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
+                  Followers
+                </span>
+              </div>
+              <div>
+                <span className="block font-headline text-3xl font-bold text-primary">
+                  {recipeList.length}
                 </span>
                 <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
                   Recipes
+                </span>
+              </div>
+              <div>
+                <span className="block font-headline text-3xl font-bold text-primary">
+                  {formatCount(profile.likes_count ?? 0)}
+                </span>
+                <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
+                  Likes
                 </span>
               </div>
             </div>
@@ -183,10 +206,10 @@ export default async function StorefrontPage({ params }: Props) {
             </h2>
           </div>
 
-          {recipes.length === 0 ? (
+          {recipeList.length === 0 ? (
             <EmptyState name={profile.full_name} />
           ) : (
-            <RecipeGrid recipes={recipes} />
+            <RecipeGrid recipes={recipeList} />
           )}
         </section>
 
@@ -215,6 +238,14 @@ export default async function StorefrontPage({ params }: Props) {
       </footer>
     </div>
   );
+}
+
+// ─── Helpers ───────────────────────────────────────────────────────────────
+
+function formatCount(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return n.toString();
 }
 
 // ─── Sub-components ────────────────────────────────────────────────────────
