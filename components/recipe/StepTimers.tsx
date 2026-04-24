@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 type Step = {
   id: string;
@@ -10,8 +10,7 @@ type Step = {
 
 interface Props {
   steps: Step[];
-  freeCount?: number;
-  editorial?: boolean;
+  freeCount?: number; // steps beyond this index are blurred (paywall)
 }
 
 function fmt(secs: number) {
@@ -23,6 +22,12 @@ function fmt(secs: number) {
 export default function StepTimers({ steps, freeCount }: Props) {
   const [timers, setTimers] = useState<Record<string, { remaining: number; running: boolean; done: boolean }>>({});
   const intervals = useRef<Record<string, ReturnType<typeof setInterval>>>({});
+
+  useEffect(() => {
+    return () => {
+      Object.values(intervals.current).forEach(clearInterval);
+    };
+  }, []);
 
   const toggle = (step: Step) => {
     const id = step.id;
