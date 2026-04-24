@@ -199,7 +199,7 @@ export default async function RecipePage({ params }: Props) {
         </section>
 
         {/* ── MAIN CONTENT ──────────────────────────────────────── */}
-        <section className={`mt-24 grid grid-cols-1 lg:grid-cols-12 gap-16 ${recipe.cover_image_url ? "lg:mt-32" : "mt-16"}`}>
+        <section className={`grid grid-cols-1 lg:grid-cols-12 gap-16 ${recipe.cover_image_url ? "mt-24 lg:mt-32" : "mt-16"}`}>
 
           {/* Left — sticky ingredients sidebar */}
           {(ingredients?.length ?? 0) > 0 && (
@@ -239,7 +239,7 @@ export default async function RecipePage({ params }: Props) {
               <div className="mt-12 bg-surface-container-low rounded-[1rem] p-10 text-center">
                 <span className="material-symbols-outlined text-primary mb-4 block" style={{ fontSize: "44px", fontVariationSettings: "'FILL' 1" }}>lock</span>
                 <h3 className="font-headline text-3xl font-bold italic text-on-surface mb-3">
-                  {(steps?.length ?? 0) - 2} more step{(steps?.length ?? 0) - 2 !== 1 ? "s" : ""} inside
+                  {(steps?.length ?? 0) - (freeStepsCount ?? 0)} more step{(steps?.length ?? 0) - (freeStepsCount ?? 0) !== 1 ? "s" : ""} inside
                 </h3>
                 <p className="font-body text-on-surface-variant mb-8 text-lg max-w-md mx-auto leading-relaxed">
                   Unlock the full recipe once — it&apos;s yours to keep and cook forever.

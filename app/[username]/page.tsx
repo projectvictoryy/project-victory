@@ -72,7 +72,7 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
     (() => {
       let q = supabase
         .from("recipes")
-        .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
+        .select("id, title, slug, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
         .eq("user_id", profile.id)
         .eq("status", "published")
         .is("deleted_at", null)
