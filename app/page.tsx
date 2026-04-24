@@ -1,4 +1,5 @@
 import { APP_CONFIG } from "@/config/app";
+import SiteNav from "@/components/ui/SiteNav";
 
 const STATS = [
   { value: "85%", label: "Revenue to you" },
@@ -56,34 +57,27 @@ export default function LandingPage() {
   return (
     <main className="flex flex-col min-h-screen bg-background overflow-x-hidden">
 
-      {/* ── NAV ──────────────────────────────────────────────────── */}
-      <nav className="sticky top-0 z-50 flex justify-between items-center w-full px-6 md:px-10 py-4 bg-background/90 backdrop-blur-md border-b border-outline-variant/20">
-        <div className="font-headline text-xl font-bold italic text-primary">
-          {APP_CONFIG.name}
-        </div>
-        <div className="hidden md:flex items-center gap-8">
-          {["Features", "How it works", "Pricing"].map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors"
-            >
-              {item}
+      <SiteNav
+        center={
+          <>
+            {["Features", "How it works", "Pricing"].map((item) => (
+              <a key={item} href="#" className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors">
+                {item}
+              </a>
+            ))}
+          </>
+        }
+        right={
+          <>
+            <a href="/login" className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors hidden sm:block">
+              Log in
             </a>
-          ))}
-        </div>
-        <div className="flex items-center gap-3">
-          <a href="/login" className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors hidden sm:block">
-            Log in
-          </a>
-          <a
-            href="/signup"
-            className="cta-gradient text-on-primary px-5 py-2 rounded-full font-body font-medium text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 active:scale-95 transition-all"
-          >
-            Start free
-          </a>
-        </div>
-      </nav>
+            <a href="/signup" className="cta-gradient text-on-primary px-5 py-2 rounded-full font-body font-medium text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 active:scale-95 transition-all">
+              Start free
+            </a>
+          </>
+        }
+      />
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative flex flex-col lg:flex-row items-center gap-16 px-6 md:px-10 pt-20 pb-28 max-w-7xl mx-auto w-full min-h-[88vh]">

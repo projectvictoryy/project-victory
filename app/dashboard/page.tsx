@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-import { APP_CONFIG } from "@/config/app";
 import Link from "next/link";
+import SiteNav from "@/components/ui/SiteNav";
 
 const STATUS_STYLES: Record<string, string> = {
   published: "bg-surface-container text-on-surface-variant border-outline-variant",
@@ -28,11 +28,9 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="font-headline font-bold italic text-primary text-xl">{APP_CONFIG.name}</Link>
-          <div className="flex items-center gap-4">
+      <SiteNav
+        right={
+          <>
             {profile?.username && (
               <Link href={`/${profile.username}`} className="font-body text-sm text-on-surface-variant hover:text-on-surface transition-colors">
                 View profile
@@ -42,9 +40,9 @@ export default async function DashboardPage() {
               <span className="material-symbols-outlined text-base">settings</span>
               Settings
             </Link>
-          </div>
-        </div>
-      </nav>
+          </>
+        }
+      />
 
       <main className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
