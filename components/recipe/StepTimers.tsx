@@ -10,7 +10,8 @@ type Step = {
 
 interface Props {
   steps: Step[];
-  freeCount?: number; // steps beyond this index are blurred (paywall)
+  freeCount?: number;
+  editorial?: boolean;
 }
 
 function fmt(secs: number) {
