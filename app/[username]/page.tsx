@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ShareButton from "@/components/storefront/ShareButton";
+import FollowButton from "@/components/storefront/FollowButton";
 import RecipeFilters from "@/components/storefront/RecipeFilters";
 import NavUserMenu from "@/components/storefront/NavUserMenu";
 import { Suspense } from "react";
@@ -59,19 +60,31 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
 
   const isOwner = authUser?.id === profile.id;
 
-  let query = supabase
-    .from("recipes")
-    .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
-    .eq("user_id", profile.id)
-    .eq("status", "published")
-    .is("deleted_at", null)
-    .order("published_at", { ascending: false });
+  const [{ data: followRow }, { data: recipes }] = await Promise.all([
+    authUser && !isOwner
+      ? supabase
+          .from("follows")
+          .select("follower_id")
+          .eq("follower_id", authUser.id)
+          .eq("following_id", profile.id)
+          .maybeSingle()
+      : Promise.resolve({ data: null }),
+    (() => {
+      let q = supabase
+        .from("recipes")
+        .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
+        .eq("user_id", profile.id)
+        .eq("status", "published")
+        .is("deleted_at", null)
+        .order("published_at", { ascending: false });
+      if (cuisine) q = q.contains("cuisine_type", [cuisine]);
+      if (meal) q = q.eq("meal_type", meal.toLowerCase());
+      if (difficulty) q = q.eq("difficulty", difficulty);
+      return q;
+    })(),
+  ]);
 
-  if (cuisine) query = query.contains("cuisine_type", [cuisine]);
-  if (meal) query = query.eq("meal_type", meal.toLowerCase());
-  if (difficulty) query = query.eq("difficulty", difficulty);
-
-  const { data: recipes } = await query;
+  const isFollowing = !!followRow;
   const recipeList: Recipe[] = recipes ?? [];
 
   return (
@@ -188,9 +201,17 @@ export default async function StorefrontPage({ params, searchParams }: Props) {
 
             {/* Actions */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <button className="cta-gradient text-on-primary px-8 py-3 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 active:scale-95 transition-all">
-                Follow
-              </button>
+              {!isOwner && authUser && (
+                <FollowButton followingId={profile.id} initialIsFollowing={isFollowing} />
+              )}
+              {!isOwner && !authUser && (
+                <a
+                  href="/login"
+                  className="cta-gradient text-on-primary px-8 py-3 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 active:scale-95 transition-all"
+                >
+                  Follow
+                </a>
+              )}
               <ShareButton username={profile.username} name={profile.full_name} />
 
             </div>
