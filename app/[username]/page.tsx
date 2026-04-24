@@ -4,10 +4,13 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ShareButton from "@/components/storefront/ShareButton";
+import RecipeFilters from "@/components/storefront/RecipeFilters";
 import NavUserMenu from "@/components/storefront/NavUserMenu";
+import { Suspense } from "react";
 
 interface Props {
   params: Promise<{ username: string }>;
+  searchParams: Promise<{ cuisine?: string; meal?: string; difficulty?: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -33,8 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function StorefrontPage({ params }: Props) {
+export default async function StorefrontPage({ params, searchParams }: Props) {
   const { username } = await params;
+  const { cuisine, meal, difficulty } = await searchParams;
   const supabase = await createClient();
 
   const { data: { user: authUser } } = await supabase.auth.getUser();
@@ -42,7 +46,7 @@ export default async function StorefrontPage({ params }: Props) {
   const [{ data: profile }, { data: authProfile }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("id, full_name, username, avatar_url, bio, cuisine_tags")
+      .select("id, full_name, username, avatar_url, bio, cuisine_tags, followers_count, likes_count")
       .eq("username", username)
       .is("deleted_at", null)
       .maybeSingle(),
@@ -55,8 +59,20 @@ export default async function StorefrontPage({ params }: Props) {
 
   const isOwner = authUser?.id === profile.id;
 
-  // Recipes fetched here once recipes table is built
-  const recipes: Recipe[] = [];
+  let query = supabase
+    .from("recipes")
+    .select("id, title, cover_image_url, cook_time, difficulty, cuisine_type, meal_type")
+    .eq("user_id", profile.id)
+    .eq("status", "published")
+    .is("deleted_at", null)
+    .order("published_at", { ascending: false });
+
+  if (cuisine) query = query.contains("cuisine_type", [cuisine]);
+  if (meal) query = query.eq("meal_type", meal.toLowerCase());
+  if (difficulty) query = query.eq("difficulty", difficulty);
+
+  const { data: recipes } = await query;
+  const recipeList: Recipe[] = recipes ?? [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -146,10 +162,26 @@ export default async function StorefrontPage({ params }: Props) {
             <div className="flex flex-wrap gap-12 py-4">
               <div>
                 <span className="block font-headline text-3xl font-bold text-primary">
-                  {recipes.length}
+                  {formatCount(profile.followers_count ?? 0)}
+                </span>
+                <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
+                  Followers
+                </span>
+              </div>
+              <div>
+                <span className="block font-headline text-3xl font-bold text-primary">
+                  {recipeList.length}
                 </span>
                 <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
                   Recipes
+                </span>
+              </div>
+              <div>
+                <span className="block font-headline text-3xl font-bold text-primary">
+                  {formatCount(profile.likes_count ?? 0)}
+                </span>
+                <span className="font-headline text-xs font-bold uppercase tracking-widest text-outline">
+                  Likes
                 </span>
               </div>
             </div>
@@ -167,16 +199,29 @@ export default async function StorefrontPage({ params }: Props) {
 
         {/* Recipes Section */}
         <section className="mb-24">
-          <div className="flex justify-between items-end mb-12">
+          <div className="flex justify-between items-end mb-8">
             <h2 className="font-headline text-4xl font-bold italic text-on-surface">
               Recipes
             </h2>
+            {isOwner && (
+              <Link
+                href="/dashboard/recipes/new"
+                className="cta-gradient text-on-primary px-5 py-2.5 rounded-full font-body font-bold text-sm shadow-[0_2px_8px_rgba(196,94,0,0.25)] hover:opacity-90 transition-all flex items-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-base">add</span>
+                New recipe
+              </Link>
+            )}
           </div>
 
-          {recipes.length === 0 ? (
+          <Suspense>
+            <RecipeFilters />
+          </Suspense>
+
+          {recipeList.length === 0 ? (
             <EmptyState name={profile.full_name} />
           ) : (
-            <RecipeGrid recipes={recipes} />
+            <RecipeGrid recipes={recipeList} username={profile.username} />
           )}
         </section>
 
@@ -207,15 +252,25 @@ export default async function StorefrontPage({ params }: Props) {
   );
 }
 
+// ─── Helpers ───────────────────────────────────────────────────────────────
+
+function formatCount(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return n.toString();
+}
+
 // ─── Sub-components ────────────────────────────────────────────────────────
 
 type Recipe = {
   id: string;
   title: string;
+  slug?: string;
   cover_image_url: string | null;
   cook_time: number | null;
   difficulty: string | null;
   cuisine_type: string[] | null;
+  meal_type?: string | null;
 };
 
 function EmptyState({ name }: { name: string }) {
@@ -237,7 +292,7 @@ function EmptyState({ name }: { name: string }) {
   );
 }
 
-function RecipeGrid({ recipes }: { recipes: Recipe[] }) {
+function RecipeGrid({ recipes, username }: { recipes: Recipe[]; username: string }) {
   const [featured, ...rest] = recipes;
   const side = rest[0];
   const small = rest.slice(1, 4);
@@ -246,7 +301,7 @@ function RecipeGrid({ recipes }: { recipes: Recipe[] }) {
     <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
       {/* Featured card */}
       {featured && (
-        <div className="md:col-span-8 group relative overflow-hidden rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] hover:shadow-[0_8px_24px_rgba(92,46,0,0.10)] transition-shadow">
+        <Link href={`/${username}/${featured.slug ?? featured.id}`} className="md:col-span-8 group relative overflow-hidden rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] hover:shadow-[0_8px_24px_rgba(92,46,0,0.10)] transition-shadow">
           <div className="aspect-[16/9] overflow-hidden">
             {featured.cover_image_url ? (
               <img
@@ -282,12 +337,12 @@ function RecipeGrid({ recipes }: { recipes: Recipe[] }) {
               )}
             </div>
           </div>
-        </div>
+        </Link>
       )}
 
       {/* Side card */}
       {side && (
-        <div className="md:col-span-4 group flex flex-col rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] overflow-hidden">
+        <Link href={`/${username}/${side.slug ?? side.id}`} className="md:col-span-4 group flex flex-col rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] overflow-hidden">
           <div className="h-64 overflow-hidden">
             {side.cover_image_url ? (
               <img
@@ -306,12 +361,12 @@ function RecipeGrid({ recipes }: { recipes: Recipe[] }) {
               <span className="material-symbols-outlined text-primary">arrow_right_alt</span>
             </div>
           </div>
-        </div>
+        </Link>
       )}
 
       {/* Small cards */}
       {small.map((recipe) => (
-        <div key={recipe.id} className="md:col-span-4 group rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] overflow-hidden">
+        <Link key={recipe.id} href={`/${username}/${recipe.slug ?? recipe.id}`} className="md:col-span-4 group rounded-[1rem] bg-surface-container-lowest shadow-[0_1px_4px_rgba(92,46,0,0.08)] overflow-hidden">
           <div className="h-48 overflow-hidden">
             {recipe.cover_image_url ? (
               <img
@@ -332,7 +387,7 @@ function RecipeGrid({ recipes }: { recipes: Recipe[] }) {
               <span className="material-symbols-outlined text-primary">bookmark</span>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
